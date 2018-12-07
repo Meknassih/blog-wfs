@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { TimelineComponent } from './timeline/timeline.component';
-import { ArticleService } from './article.service';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -17,9 +17,10 @@ import { ArticleService } from './article.service';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule
   ],
-  providers: [ArticleService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
