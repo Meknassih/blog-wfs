@@ -12,7 +12,7 @@
 </section>
 <section class="section">
   <div class="container">
-    <div class="box" *ngFor="let article of allArticles">
+    <div class="box" *ngFor="let article of allArticles; index as i">
       <article>
         <div class="level is-small">
           <div class="level-left">
@@ -29,39 +29,51 @@
           <p>{{article.content}}</p>
         </div>
       </article>
-      <section class="section">
-        <h2 class="subtitle">Comments <span class="has-text-grey-light">({{article.comments.length}})</span>
+      <div class="container">
+        <h2 class="subtitle">
+          Comments <span class="has-text-grey-light">({{article.comments.length}})</span>
+          <span class="inline-block" *ngIf="commentSectionCollapsed[i]; else sectionExpanded"
+            (click)="toggleCommentSection(i, 'expand')">
+            <a class="icon inline"><i class="far fa-plus-square"></i></a>
+          </span>
+          <ng-template #sectionExpanded>
+            <span class="inline-block" (click)="toggleCommentSection(i, 'collapse')">
+              <a class="icon inline"><i class="far fa-minus-square"></i></a>
+            </span>
+          </ng-template>
         </h2>
-        <div class="card" *ngFor="let comment of article.comments">
-          <div class="card-content">
-            <p class="subtitle is-marginless">
-              {{comment.author}}
-            </p>
-            <div class="content">{{comment.content}}</div>
-          </div>
-          <div class="level comment-footer">
-            <div class="level-left">
-              <div class="level-item">
-                <a class="button is-info">
-                  <span class="icon"><i class="fas fa-caret-up"></i></span>
-                  <span>Upvote</span>
-                </a>
-              </div>
-              <div class="level-item">
-                <a class="button is-light">
-                  <span class="icon"><i class="fas fa-caret-down"></i></span>
-                  <span>Downvote</span>
-                </a>
-              </div>
-            </div>
-            <div class="level-right">
-              <div class="level-item has-text-grey-light">
-                {{comment.creationDate | date: "dd/MM/yyyy hh:mm"}}
+        <div id="commentSection" [@toggleComments]="!commentSectionCollapsed[i]? 'expanded':'collapsed'">
+          <div class="message is-small" *ngFor="let comment of article.comments">
+            <div class="message-body">
+              <p class="subtitle is-marginless">
+                {{comment.author}}
+              </p>
+              <div class="content">{{comment.content}}</div>
+              <div class="level comment-footer">
+                <div class="level-left">
+                  <div class="level-item">
+                    <a class="button is-info is-small">
+                      <span class="icon"><i class="fas fa-caret-up"></i></span>
+                      <span>Upvote</span>
+                    </a>
+                  </div>
+                  <div class="level-item">
+                    <a class="button is-light is-small">
+                      <span class="icon"><i class="fas fa-caret-down"></i></span>
+                      <span>Downvote</span>
+                    </a>
+                  </div>
+                </div>
+                <div class="level-right">
+                  <div class="level-item has-text-grey-light is-size-7">
+                    {{comment.creationDate | date: "dd/MM/yyyy hh:mm"}}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </div>
   </div>
 </section>

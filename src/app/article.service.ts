@@ -12,16 +12,28 @@ export class ArticleService {
     // this.articles = articles ? articles : [];
     this.articles = [];
     this.articles[0] = new Article('Pop', 'This is bear',
-    'Content of article number one.', undefined)
+    `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Pellentesque risus mi, tempus quis placerat ut, porta nec nulla.
+    Vestibulum rhoncus ac ex sit amet fringilla.
+    Nullam gravida purus diam, et dictum felis venenatis efficitur.
+    Aenean ac eleifend lacus, in mollis lectus.
+    Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque.
+    Donec dui urna, vehicula et sem eget, facilisis sodales sem.`, undefined)
     .addComment(new Comment('Mark', 'I don\'t like this article.'))
     .addComment(new Comment('Zack', 'Nobody asked you Mark.'))
     .addComment(new Comment('Mark', 'Get a life bruh'));
     this.articles[1] = new Article('Lol', 'Love the new blog',
-    'Content of article number two and some more content.', undefined);
+    `Pellentesque risus mi, tempus quis placerat ut, porta nec nulla.
+    Vestibulum rhoncus ac ex sit amet fringilla.
+    Nullam gravida purus diam, et dictum felis venenatis efficitur.
+    Aenean ac eleifend lacus, in mollis lectus.`, undefined);
     this.articles[2] = new Article('Top', 'Much development',
      'Content of article number three. Adding more stuff just to make it longer.', undefined);
-    this.articles[3] = new Article('Dud', 'Now stop',
-    'Last but not least of the best blog articles. Wow.', undefined)
+    this.articles[3] = new Article('Dud', 'Now what?',
+    `Nullam gravida purus diam, et dictum felis venenatis efficitur.
+    Aenean ac eleifend lacus, in mollis lectus.
+    Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque.
+    Donec dui urna, vehicula et sem eget, facilisis sodales sem.`, undefined)
     .addComment(new Comment('Linda', 'I won\'t stop. What you gonna do?'))
     .addComment(new Comment('Dud', 'Reported.'));
   }
