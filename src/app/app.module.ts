@@ -8,6 +8,7 @@ import { FooterComponent } from './footer/footer.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { CommonModule } from '@angular/common';
 import { AuthComponent } from './auth/auth.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { AuthComponent } from './auth/auth.component';
     HeaderComponent,
     FooterComponent,
     TimelineComponent,
-    AuthComponent
+    AuthComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
