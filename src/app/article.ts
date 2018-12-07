@@ -14,7 +14,7 @@ export class Article {
         this.author = author;
         this.title = title;
         this.content = content;
-        this.comments = comments;
+        this.comments = comments ? comments : [];
         this.creationDate = new Date();
         this.updateDate = new Date();
         this.status = ArticleStatus.EDITING;
@@ -27,4 +27,8 @@ export class Article {
     public getUpdateDate(): Date { return this.updateDate; }
     public getComments(): Array<Comment> { return this.comments; }
     public getStatus(): ArticleStatus { return this.status; }
+    public addComment(comment: Comment) {
+        this.comments.push(comment);
+        return this;
+    }
 }
