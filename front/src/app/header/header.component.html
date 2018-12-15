@@ -20,32 +20,10 @@
       <a class="navbar-item">
         Documentation
       </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More
-        </a>
-
-        <div class="navbar-dropdown">
-          <a class="navbar-item">
-            About
-          </a>
-          <a class="navbar-item">
-            Jobs
-          </a>
-          <a class="navbar-item">
-            Contact
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Report an issue
-          </a>
-        </div>
-      </div>
     </div>
 
     <div class="navbar-end">
-      <div class="navbar-item">
+      <div class="navbar-item" *ngIf="!_authService.getCurrentUser(); else navUserProfile">
         <div class="buttons">
           <a class="button is-primary" routerLink="/signup">
             <strong>Sign up</strong>
@@ -58,3 +36,23 @@
     </div>
   </div>
 </nav>
+
+<ng-template #navUserProfile>
+  <div class="navbar-item has-dropdown is-hoverable">
+    <a class="navbar-link">
+      <p>Hello <strong>{{_authService.getCurrentUser().getUsername()}}</strong>.</p>
+    </a>
+    <div class="navbar-dropdown">
+      <a class="navbar-item">
+        Profile
+      </a>
+      <a class="navbar-item">
+        Settings
+      </a>
+      <hr class="navbar-divider">
+      <a class="navbar-item" (click)="handleLogout()">
+        Log out
+      </a>
+    </div>
+  </div>
+</ng-template>

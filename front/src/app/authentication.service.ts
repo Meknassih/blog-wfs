@@ -38,4 +38,8 @@ export class AuthenticationService {
       return this.dbMockup[this.dbMockup.length - 1];
     }
   }
+
+  getCurrentUser(): User {
+    return this.currentUser;
+  }
 }
