@@ -15,10 +15,14 @@
     <div class="box">
       <form [formGroup]="signupForm" (ngSubmit)="register()">
 
-        <div class="notification is-danger" *ngIf="username.invalid && (username.dirty || username.touched)">
+        <div class="notification is-warning" *ngIf="username.invalid && (username.dirty || username.touched)">
           <p *ngIf="username.errors.required">This field is required.</p>
           <p *ngIf="username.errors.minlength">This username should be 3 or more characters.</p>
         </div>  
+        <div class="notification is-danger" *ngIf="signupError">
+          <button class="delete" (click)="handleCloseNotification()"></button>
+          {{this.signupError}}
+        </div>
         <div class="field">
           <label class="label">Username</label>
           <div class="control">

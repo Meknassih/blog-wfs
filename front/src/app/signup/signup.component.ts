@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthenticationService } from '../authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -8,8 +10,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
   private signupForm: FormGroup;
+  private signupError: string;
 
-  constructor() { }
+  constructor(
+    private _authService: AuthenticationService,
+    private _router: Router
+  ) { }
 
   ngOnInit() {
     this.signupForm = new FormGroup({
@@ -26,9 +32,14 @@ export class SignupComponent implements OnInit {
   get email() { return this.signupForm.get('email'); }
 
   register() {
-    console.log(this.signupForm.value.username,
-      this.signupForm.value.password1,
-      this.signupForm.value.password2,
-      this.signupForm.value.email);
+    let registerError;
+    if (registerError = this._authService.signup(this.username.value, this.password1.value, this.email.value))
+      this._router.navigate(['']);
+    else
+      this.signupError = 'SERVER ERROR';
+  }
+
+  handleCloseNotification() {
+    this.signupError = undefined;
   }
 }
