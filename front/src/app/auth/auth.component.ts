@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-auth',
@@ -8,10 +9,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./auth.component.sass']
 })
 export class AuthComponent implements OnInit {
-  @ViewChild('usrinput') private usrinput: ElementRef;
-  @ViewChild('pwdinput') private pwdinput: ElementRef;
-
   private authError: any;
+  private loginForm = new FormGroup({
+    username: new FormControl(''),
+    password: new FormControl(''),
+  });
 
   constructor(
     private _authService: AuthenticationService,
@@ -27,8 +29,8 @@ export class AuthComponent implements OnInit {
   }
 
   authenticate() {
-    console.log(this.usrinput.nativeElement.value, this.pwdinput.nativeElement.value);
-    if (this._authService.login(this.usrinput.nativeElement.value, this.pwdinput.nativeElement.value))
+    console.log(this.loginForm.value);
+    if (this._authService.login(this.loginForm.value.username, this.loginForm.value.password))
       this._router.navigate(['']);
     else {
       this.authError.message = 'Cet identifiant et ce mot de passe ne correspondent à aucun utilisateur.';
