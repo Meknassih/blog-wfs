@@ -17,17 +17,20 @@
         <button class="delete" (click)="handleCloseNotification()"></button>
         {{authError.message}}
       </div>
+      <div class="notification is-warning" *ngIf="username.invalid && password.invalid && (password.touched || username.touched)">
+        <p>Please fill in both fields to log in.</p>
+      </div>
       <form [formGroup]="loginForm" (ngSubmit)="authenticate()">
         <div class="field">
           <label class="label">Username</label>
           <div class="control">
-            <input class="input" formControlName="username" type="text" placeholder="john_doe">
+            <input class="input" formControlName="username" type="text" placeholder="john_doe" required>
           </div>
         </div>
         <div class="field">
           <label class="label">Password</label>
           <div class="control">
-            <input class="input" formControlName="password" type="password" placeholder="Your password">
+            <input class="input" formControlName="password" type="password" placeholder="Your password" required>
           </div>
         </div>
         <div class="field">
