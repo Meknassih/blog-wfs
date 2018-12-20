@@ -1,47 +1,67 @@
 <section class="hero is-primary">
-    <div class="hero-body">
-      <div class="container">
-        <h1 class="title">
-          Sign up
-        </h1>
-        <h2 class="subtitle">
-          Fill in this form to register and start using the Blog
-        </h2>
-      </div>
-    </div>
-  </section>
-  <section class="section">
+  <div class="hero-body">
     <div class="container">
-      <div class="box">
+      <h1 class="title">
+        Sign up
+      </h1>
+      <h2 class="subtitle">
+        Fill in this form to register and start using the Blog
+      </h2>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="box">
+      <form [formGroup]="signupForm" (ngSubmit)="register()">
+
+        <div class="notification is-danger" *ngIf="username.invalid && (username.dirty || username.touched)">
+          <p *ngIf="username.errors.required">This field is required.</p>
+          <p *ngIf="username.errors.minlength">This username should be 3 or more characters.</p>
+        </div>  
         <div class="field">
           <label class="label">Username</label>
           <div class="control">
-            <input #usrinput class="input" type="text" placeholder="john_doe">
+            <input class="input" formControlName="username" type="text" placeholder="john_doe" required>
           </div>
+        </div>
+
+        <div class="notification is-danger" *ngIf="password1.invalid && (password1.dirty || password1.touched)">
+          <p *ngIf="password1.errors.required">This field is required.</p>
         </div>
         <div class="field">
           <label class="label">Password</label>
           <div class="control">
-            <input #pwdinput class="input" type="password" placeholder="Choose a password">
+            <input class="input" formControlName="password1" type="password" placeholder="Choose a password" required>
           </div>
+        </div>
+
+        <div class="notification is-danger" *ngIf="password2.invalid && (password2.dirty || password2.touched)">
+          <p *ngIf="password2.errors.required">This field is required.</p>
         </div>
         <div class="field">
           <label class="label">Password</label>
           <div class="control">
-            <input #pwdinput class="input" type="password" placeholder="Confirm your password">
+            <input class="input" formControlName="password2" type="password" placeholder="Confirm your password" required>
           </div>
+        </div>
+
+        <div class="notification is-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+          <p *ngIf="email.errors.required">This field is required.</p>
+          <p *ngIf="email.errors.email">This field should be a valid e-mail address.</p>
         </div>
         <div class="field">
           <label class="label">E-mail</label>
           <div class="control">
-            <input #emlinput class="input" type="email" placeholder="johndoe@example.com">
+            <input class="input" formControlName="email" type="email" placeholder="johndoe@example.com" required>
           </div>
         </div>
         <div class="field">
           <div class="control has-text-centered">
-            <button class="button is-primary is-medium" (click)="register()"><i class="fas fa-user-check"></i></button>
+            <button class="button is-primary is-medium" type="submit"><i class="fas fa-user-check"></i></button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
-  </section>
+  </div>
+</section>

@@ -17,7 +17,6 @@
         <button class="delete" (click)="handleCloseNotification()"></button>
         {{authError.message}}
       </div>
-      <!--TODO: use Angular Reactive Forms here-->
       <form [formGroup]="loginForm" (ngSubmit)="authenticate()">
         <div class="field">
           <label class="label">Username</label>
