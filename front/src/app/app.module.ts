@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { AuthComponent } from './auth/auth.component';
 import { SignupComponent } from './signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ArticleViewComponent } from './article-view/article-view.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     FooterComponent,
     TimelineComponent,
     AuthComponent,
-    SignupComponent
+    SignupComponent,
+    ArticleViewComponent
   ],
   imports: [
     BrowserModule,

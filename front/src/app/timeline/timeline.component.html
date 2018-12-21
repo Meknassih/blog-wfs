@@ -13,7 +13,7 @@
 <section class="section">
   <div class="container">
     <div class="box" *ngFor="let article of allArticles; index as i">
-      <article>
+      <article routerLink="/article/{{article.getId()}}">
         <div class="level is-small">
           <div class="level-left">
             <div class="level-item">
@@ -42,7 +42,7 @@
             </span>
           </ng-template>
         </h2>
-        <div id="commentSection" [@toggleComments]="!commentSectionCollapsed[i]? 'expanded':'collapsed'">
+        <div id="commentSection" class="container" [@toggleComments]="!commentSectionCollapsed[i]? 'expanded':'collapsed'">
           <div class="message is-small" *ngFor="let comment of article.comments">
             <div class="message-body">
               <p class="subtitle is-marginless">

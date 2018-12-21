@@ -9,8 +9,10 @@ export class Article {
     private updateDate: Date;
     private comments: Array<Comment>;
     private status: ArticleStatus;
+    private id: string;
 
-    constructor(author: string, title: string, content: string, comments?: Array<Comment>) {
+    constructor(author: string, title: string, content: string, id: string, comments?: Array<Comment>) {
+        this.id = id;
         this.author = author;
         this.title = title;
         this.content = content;
@@ -20,6 +22,7 @@ export class Article {
         this.status = ArticleStatus.EDITING;
     }
 
+    public getId(): string { return this.id; }
     public getAuthor(): string { return this.author; }
     public getTitle(): string { return this.title; }
     public getContent(): string { return this.content; }
