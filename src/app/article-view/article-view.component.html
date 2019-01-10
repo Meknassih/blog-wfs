@@ -1,0 +1,22 @@
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        {{article.getTitle()}}
+      </h1>
+      <h2 class="subtitle">
+        {{article.getAuthor()}} - {{article.getUpdateDate()}}
+      </h2>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="box">
+      <p>{{article.getContent()}}</p>
+    </div>
+    <div class="box">
+      <p *ngFor="let comment of article.getComments()">{{comment.getContent()}}</p>
+    </div>
+  </div>
+</section>
