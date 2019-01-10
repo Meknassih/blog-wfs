@@ -12,4 +12,25 @@ export class User {
     getUsername(): string { return this.username; }
     getPassword(): string { return this.password; }
     getEmail(): string { return this.email; }
+    toJson(selectedAttributes?: UserAttributes): any {
+        let userToJson: any;
+        if (!selectedAttributes)
+            for (const i in this) {
+                if (this.hasOwnProperty(i))
+                    userToJson[i] = this[i];
+            }
+        else
+            for (const i in selectedAttributes) {
+                if (selectedAttributes.hasOwnProperty(i) && selectedAttributes[i])
+                    userToJson[i] = this[i];
+            }
+
+        return userToJson;
+    }
+}
+
+export interface UserAttributes {
+    username?: boolean;
+    password?: boolean;
+    email?: boolean;
 }

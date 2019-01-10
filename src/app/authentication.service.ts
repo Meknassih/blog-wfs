@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../environments/environment';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { ErrorService } from './error.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +13,9 @@ export class AuthenticationService {
   private dbMockup: Array<User>;
   private currentUser: User;
 
-  constructor() {
+  constructor(
+    private _httpService: HttpClient,
+    private _errorService: ErrorService) {
     this.currentUser = undefined;
     this.dbMockup = [];
     this.dbMockup.push(new User('pop', 'lol', 'pop@gmail.com'));
@@ -16,14 +23,11 @@ export class AuthenticationService {
     this.dbMockup.push(new User('top', 'lol', 'top@gmail.com'));
   }
 
-  login(usr: string, pwd: string): User {
-    const u = this.dbMockup.find((user) => (user.getUsername() === usr && user.getPassword() === pwd));
-    this.currentUser = u;
-    console.log('found user ', u);
-    if (u)
-      return { ...u } as User;
-    else
-      return undefined;
+  login(user: User): Observable<User> {
+    return this._httpService.post<User>(environment.apiBaseUrl, user.toJson({ username: true, password: true }))
+      .pipe(
+        catchError(this._errorService.handleHttpError('login', user))
+      );
   }
 
   disconnect() {

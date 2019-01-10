@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { User } from '../user';
 
 @Component({
   selector: 'app-auth',
@@ -32,6 +33,11 @@ export class AuthComponent implements OnInit {
   }
 
   authenticate() {
+    this._authService.login(new User(this.username.value, this.password.value)).subscribe((user) => {
+      if (!user.error) {
+
+      }
+    })
     if (this._authService.login(this.username.value, this.password.value))
       this._router.navigate(['']);
     else {
